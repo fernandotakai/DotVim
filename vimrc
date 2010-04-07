@@ -145,3 +145,6 @@ map <Leader>b :MiniBufExplorer<cr>
 map <Leader>t :TlistToggle<cr>
 "imap <S-Tab> <C-o><<
 nmap <c-m> :nohlsearch<cr>
+
+
+au! BufRead,BufNewFile *.json setfiletype json 
