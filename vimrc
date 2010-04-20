@@ -9,7 +9,7 @@
 if has("gui_running")
   colorscheme mustang  
 else
-  colorscheme desert
+  colorscheme neverness
 endif
 
 " An example for a vimrc file.
