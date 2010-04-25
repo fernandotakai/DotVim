@@ -90,7 +90,7 @@ nnoremap * :set hlsearch<cr>*
 nnoremap # :set hlsearch<cr>#
 nnoremap / :set hlsearch<cr>/
 nnoremap ? :set hlsearch<cr>?
-nnoremap <silent> <C-l> :nohl<CR><C-l>
+nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -112,11 +112,9 @@ nmap <c-e> :FuzzyFinderTag<cr>
 nmap <c-s> :FuzzyFinderBuffer<cr>
 nmap <c-f> :FuzzyFinderTextMate<cr>
 
-"imap <S-Tab> <C-o><<
-nmap <c-m> :nohlsearch<cr>
-
 map <Leader>b :MiniBufExplorer<cr>
 map <Leader>t :TlistToggle<cr>
+map <silent> <C-o> o<Esc>
   
 let g:fuzzy_ignore = "*.pyc"
 let g:fuzz_matching_limit = 20
