@@ -1,38 +1,16 @@
-":syntax on
-"set cindent
-"set smartindent
-"set autoindent
-"set expandtab
-"set tabstop=2
-"set shiftwidth=2
-
 if has("gui_running")
   colorscheme mustang  
+  set number
 else
   colorscheme neverness
 endif
 
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2008 Jul 02
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
-
-" When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
 endif
 
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
 set nobackup		" keep a backup file
@@ -41,15 +19,8 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
-
 " Don't use Ex mode, use Q for formatting
 map Q gq
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
@@ -91,12 +62,9 @@ if has("autocmd")
     \ endif
 
   augroup END
-
 else
-
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
+  set autoindent
+endif 
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
@@ -115,20 +83,41 @@ set incsearch
 set ignorecase
 set smartcase
 
+" This is done so we can walk around with the cursor
+set virtualedit=all
+ 
 nnoremap * :set hlsearch<cr>*
 nnoremap # :set hlsearch<cr>#
 nnoremap / :set hlsearch<cr>/
 nnoremap ? :set hlsearch<cr>?
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
-" This is done so we can walk around with the cursor
-set virtualedit=all
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+ 
+vmap <D-j> gj
+vmap <D-k> gk
+vmap <D-4> g$
+vmap <D-6> g^
+vmap <D-0> g^
+nmap <D-j> gj
+nmap <D-k> gk
+nmap <D-4> g$
+nmap <D-6> g^
+nmap <D-0> g^
 
 " FuzzyFinder
 nmap <c-e> :FuzzyFinderTag<cr>
 nmap <c-s> :FuzzyFinderBuffer<cr>
 nmap <c-f> :FuzzyFinderTextMate<cr>
 
+"imap <S-Tab> <C-o><<
+nmap <c-m> :nohlsearch<cr>
+
+map <Leader>b :MiniBufExplorer<cr>
+map <Leader>t :TlistToggle<cr>
+  
 let g:fuzzy_ignore = "*.pyc"
 let g:fuzz_matching_limit = 20
 
@@ -137,14 +126,6 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
-
-" \b goes to minibufexplorer 
-map <Leader>b :MiniBufExplorer<cr>
-
-" \t toggls the taglist window
-map <Leader>t :TlistToggle<cr>
-"imap <S-Tab> <C-o><<
-nmap <c-m> :nohlsearch<cr>
 
 
 au! BufRead,BufNewFile *.json setfiletype json 
