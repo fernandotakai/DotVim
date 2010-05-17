@@ -2,7 +2,7 @@ if has("gui_running")
   colorscheme mustang  
   set number
 else
-  colorscheme neverness
+  colorscheme desert
 endif
 
 if v:progname =~? "evim"
@@ -111,6 +111,8 @@ nmap <D-0> g^
 nmap <c-e> :FuzzyFinderTag<cr>
 nmap <c-s> :FuzzyFinderBuffer<cr>
 nmap <c-f> :FuzzyFinderTextMate<cr>
+
+nmap <c-m> :nohlsearch<cr>
 
 map <Leader>b :MiniBufExplorer<cr>
 map <Leader>t :TlistToggle<cr>
