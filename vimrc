@@ -116,7 +116,6 @@ nmap <c-m> :nohlsearch<cr>
 
 map <Leader>b :MiniBufExplorer<cr>
 map <Leader>t :TlistToggle<cr>
-map <silent> <C-o> o<Esc>
   
 let g:fuzzy_ignore = "*.pyc"
 let g:fuzz_matching_limit = 20
@@ -126,6 +125,5 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
-
 
 au! BufRead,BufNewFile *.json setfiletype json 
