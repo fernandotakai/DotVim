@@ -127,12 +127,8 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
 
 noremap  <Up> <nop>
-noremap! <Up> <nop>
 noremap  <Down> <nop>
-noremap! <Down> <nop>
 noremap  <Left> <nop>
-noremap! <Left> <nop>
 noremap  <Right> <nop>
-noremap! <Right> <nop>
 
 au! BufRead,BufNewFile *.json setfiletype json 
