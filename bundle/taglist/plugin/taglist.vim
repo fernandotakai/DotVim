@@ -88,7 +88,7 @@ if !exists('loaded_taglist')
             " On Free-BSD, exuberant ctags is installed as exctags
             let Tlist_Ctags_Cmd = 'exctags'
         elseif executable('ctags')
-            let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+            let Tlist_Ctags_Cmd = 'ctags'
         elseif executable('ctags.exe')
             let Tlist_Ctags_Cmd = 'ctags.exe'
         elseif executable('tags')
