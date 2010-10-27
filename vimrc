@@ -1,34 +1,30 @@
-if has("gui_running")
-  colorscheme mustang  
+call pathogen#runtime_append_all_bundles()
+
+set nocompatible
+
+if &t_Co >= 256 || has("gui_running")
+  colorscheme mustang
   set number
+  set relativenumber
+  set guifont=Droid\ Sans\ Mono\ Slashed:h12
 else
   colorscheme desert
 endif
 
-if v:progname =~? "evim"
-  finish
-endif
-
-set nocompatible
-
+set hidden
 set backspace=indent,eol,start
 
-set nobackup		" keep a backup file
-set history=100	" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set nobackup		
+set history=100	
+set ruler		
+set showcmd		
+set incsearch	 
+set noswapfile
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
 endif
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
 syntax on
 set hlsearch
 
@@ -40,8 +36,8 @@ if has("autocmd")
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
   filetype plugin indent on
-  set tabstop=4
-  set shiftwidth=4
+  set tabstop=2
+  set shiftwidth=2
   set expandtab
 
   " Put these in an autocmd group, so that we can delete them easily.
@@ -107,16 +103,17 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
-" FuzzyFinder
-nmap <c-e> :FuzzyFinderTag<cr>
-nmap <c-s> :FuzzyFinderBuffer<cr>
-nmap <c-f> :FuzzyFinderTextMate<cr>
-
 nmap <c-m> :nohlsearch<cr>
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 map <Leader>b :MiniBufExplorer<cr>
 map <Leader>t :TlistToggle<cr>
-  
+map <Leader><Tab> :Scratch<cr>
+map <Leader>y :YRShow<cr>
+map <Leader>a :Ack 
+map <leader>g :GundoToggle<cr>
+
 let g:fuzzy_ignore = "*.pyc"
 let g:fuzz_matching_limit = 20
 
@@ -125,10 +122,72 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 
 noremap  <Up> <nop>
 noremap  <Down> <nop>
 noremap  <Left> <nop>
 noremap  <Right> <nop>
 
+nnoremap ; :
+
 au! BufRead,BufNewFile *.json setfiletype json 
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+
+" buffer related things
+function! BufSel(pattern)
+  let bufcount = bufnr("$")
+  let currbufnr = 1
+  let nummatches = 0
+  let firstmatchingbufnr = 0
+  while currbufnr <= bufcount
+    if(bufexists(currbufnr))
+      let currbufname = bufname(currbufnr)
+      if(match(currbufname, a:pattern) > -1)
+        echo currbufnr . ": ". bufname(currbufnr)
+        let nummatches += 1
+        let firstmatchingbufnr = currbufnr
+      endif
+    endif
+    let currbufnr = currbufnr + 1
+  endwhile
+  if(nummatches == 1)
+    execute ":buffer ". firstmatchingbufnr
+  elseif(nummatches > 1)
+    let desiredbufnr = input("Enter buffer number: ")
+    if(strlen(desiredbufnr) != 0)
+      execute ":buffer ". desiredbufnr
+    endif
+  else
+    echo "No matching buffers"
+  endif
+endfunction
+
+function! BufVSplit(num)
+  execute ":vert sb ". a:num
+endfunction
+
+"Bind the BufSel() function to a user-command
+command! -nargs=1 Bs :call BufSel("<args>")
+command! -nargs=1 Vbuff :call BufVSplit("<args>")
+map <leader>w :Bs  
+map <leader>bv :Vbuff 
+map <leader>bs :sbuff 
+
+" Mappings to access buffers (don't use "\p" because a
+" delay before pressing "p" would accidentally paste).
+" \l       : list buffers
+" \b \f \g : go back/forward/last-used
+" \1 \2 \3 : go to buffer 1/2/3 etc
+nnoremap <Leader>g :e#<CR>
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
