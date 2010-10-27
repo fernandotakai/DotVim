@@ -20,6 +20,7 @@ set ruler
 set showcmd		
 set incsearch	 
 set noswapfile
+set scrolloff=5
 
 if has('mouse')
   set mouse=a
