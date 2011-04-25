@@ -1,0 +1,1 @@
+{"installer_type":"text","generated_by":"Vimana-2010.09303","files":[{"checksum":"e96cd54a6b5086a881de21e2e6ff9681","file":"/Users/takai/.vim/syntax/clevercss.vim"}],"version":0.3,"package":"clevercss.vim"}

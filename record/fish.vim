@@ -1,0 +1,1 @@
+{"installer_type":"text","generated_by":"Vimana-2010.09303","files":[{"checksum":"964dbf806f3fa16d0ae06692c56f1e43","file":"/Users/takai/.vim/syntax/fish.vim"}],"version":0.3,"package":"fish.vim"}

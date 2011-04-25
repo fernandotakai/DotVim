@@ -1,0 +1,1 @@
+{"installer_type":"auto","generated_by":"Vimana-2010.09303","files":[{"checksum":"9695fab102d84015ff7caf42dd7f1e86","file":"/Users/takai/.vim/doc/repeater.txt"},{"checksum":"1506fa5bff1248e352b3ca77b6b15766","file":"/Users/takai/.vim/plugin/repeater.vim"}],"version":0.2,"package":"repeater.vim"}

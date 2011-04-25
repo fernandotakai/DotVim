@@ -1,0 +1,1 @@
+{"installer_type":"text","generated_by":"Vimana-2010.09303","files":[{"checksum":"1597d3dd349ad4b6f0157add0d7e8d9d","file":"/Users/takai/.vim/colors/vividchalk.vim"}],"version":0.3,"package":"vividchalk.vim"}
