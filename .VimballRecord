@@ -1,2 +1,3 @@
 snippy_plugin.vba: call delete('/Users/takai/.vim/plugin/snippetsEmu.vim')|call delete('/Users/takai/.vim/doc/snippets_emu.txt')
 delimitMate.vba: call delete('/Users/takai/.vim/doc/delimitMate.txt')|call delete('/Users/takai/.vim/plugin/delimitMate.vim')
+markdown-1.2.0.vba: call delete('/Users/takai/.vim/ftdetect/markdown.vim')|call delete('/Users/takai/.vim/snippets/markdown.snippets')|call delete('/Users/takai/.vim/syntax/markdown.vim')

@@ -83,7 +83,6 @@ set smartcase
 " This is done so we can walk around with the cursor
 set virtualedit=all
  
-nnoremap * :set hlsearch<cr>*
 nnoremap # :set hlsearch<cr>#
 nnoremap / :set hlsearch<cr>/
 nnoremap ? :set hlsearch<cr>?
@@ -93,16 +92,10 @@ nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
  
-vmap <D-j> gj
-vmap <D-k> gk
-vmap <D-4> g$
-vmap <D-6> g^
-vmap <D-0> g^
-nmap <D-j> gj
-nmap <D-k> gk
-nmap <D-4> g$
-nmap <D-6> g^
-nmap <D-0> g^
+vmap j gj
+vmap k gk
+nmap j gj
+nmap k gk
 
 nmap <c-m> :nohlsearch<cr>
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -130,13 +123,9 @@ noremap  <Down> <nop>
 noremap  <Left> <nop>
 noremap  <Right> <nop>
 
-nnoremap ; :
+nnoremap <tab> :
 
-au! BufRead,BufNewFile *.json setfiletype json 
-au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
-
-
-" buffer related things
+" search buffer by pattern.
 function! BufSel(pattern)
   let bufcount = bufnr("$")
   let currbufnr = 1
@@ -165,6 +154,7 @@ function! BufSel(pattern)
   endif
 endfunction
 
+" splits buffer vertically by number
 function! BufVSplit(num)
   execute ":vert sb ". a:num
 endfunction
@@ -172,16 +162,12 @@ endfunction
 "Bind the BufSel() function to a user-command
 command! -nargs=1 Bs :call BufSel("<args>")
 command! -nargs=1 Vbuff :call BufVSplit("<args>")
-map <leader>w :Bs  
+map <leader>be :Bs  
 map <leader>bv :Vbuff 
 map <leader>bs :sbuff 
+map <leader>x :BufClose<CR>
 
-" Mappings to access buffers (don't use "\p" because a
-" delay before pressing "p" would accidentally paste).
-" \l       : list buffers
-" \b \f \g : go back/forward/last-used
 " \1 \2 \3 : go to buffer 1/2/3 etc
-nnoremap <Leader>g :e#<CR>
 nnoremap <Leader>1 :1b<CR>
 nnoremap <Leader>2 :2b<CR>
 nnoremap <Leader>3 :3b<CR>
@@ -192,3 +178,30 @@ nnoremap <Leader>7 :7b<CR>
 nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
+
+fu! DoRunPyBuffer2()
+pclose! " force preview window closed
+setlocal ft=python
+
+" copy the buffer into a new window, then run that buffer through python
+sil %y a | below new | sil put a | sil %!python -
+" indicate the output window as the current previewwindow
+setlocal previewwindow ro nomodifiable nomodified
+
+" back into the original window
+winc p
+endfu
+
+command! RunPyBuffer call DoRunPyBuffer2()
+map <Leader>rp :RunPyBuffer<CR>
+map <Leader>pc :pclose!<cr>
+
+" ctags
+map <silent> <c-]> :set noic<cr>g<c-]><silent>:set ic<cr>
+
+" verify js files
+au BufNewFile,BufRead *.js set makeprg=gjslint\ %
+au BufNewFile,BufRead *.js set errorformat=%-P-----\ FILE\ \ :\ \ %f\ -----,Line\ %l\\,\ E:%n:\ %m,%-Q,%-GFound\ %s,%-GSome\ %s,%-Gfixjsstyle%s,%-Gscript\ can\ %s,%-G
+au FocusLost * :wa
+
+cmap w!! %!sudo tee > /dev/null %

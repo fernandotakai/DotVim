@@ -197,6 +197,12 @@ list-snippets	snipMate.txt	/*list-snippets*
 multi_snip	snipMate.txt	/*multi_snip*
 multiple-items-example	yankring.txt	/*multiple-items-example*
 named-tags	snippets_emu.txt	/*named-tags*
+repeater-commands	repeater.txt	/*repeater-commands*
+repeater-contents	repeater.txt	/*repeater-contents*
+repeater-install	repeater.txt	/*repeater-install*
+repeater-intro	repeater.txt	/*repeater-intro*
+repeater-usage	repeater.txt	/*repeater-usage*
+repeater.txt	repeater.txt	/*repeater.txt*
 snip-advanced-tag-commands	snippets_emu.txt	/*snip-advanced-tag-commands*
 snip-buffer-specific	snippets_emu.txt	/*snip-buffer-specific*
 snip-bundles	snippets_emu.txt	/*snip-bundles*
