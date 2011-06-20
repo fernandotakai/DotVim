@@ -1,0 +1,1 @@
+{"installer_type":"text","generated_by":"Vimana-2010.09303","files":[{"checksum":"9028ab290bef7004c3994c231a489e96","file":"/Users/takai/.vim/syntax/nginx.vim"}],"version":0.3,"package":"nginx.vim"}

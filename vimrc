@@ -1,6 +1,7 @@
 call pathogen#runtime_append_all_bundles()
 
 set nocompatible
+set vb
 
 if &t_Co >= 256 || has("gui_running")
   colorscheme mustang
@@ -202,6 +203,7 @@ map <silent> <c-]> :set noic<cr>g<c-]><silent>:set ic<cr>
 " verify js files
 au BufNewFile,BufRead *.js set makeprg=gjslint\ %
 au BufNewFile,BufRead *.js set errorformat=%-P-----\ FILE\ \ :\ \ %f\ -----,Line\ %l\\,\ E:%n:\ %m,%-Q,%-GFound\ %s,%-GSome\ %s,%-Gfixjsstyle%s,%-Gscript\ can\ %s,%-G
+au BufRead,BufNewFile /usr/local/Cellar/nginx/0.7.65/conf/* set ft=nginx 
 au FocusLost * :wa
 
 cmap w!! %!sudo tee > /dev/null %
