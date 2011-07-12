@@ -207,3 +207,6 @@ au BufRead,BufNewFile /usr/local/Cellar/nginx/0.7.65/conf/* set ft=nginx
 au FocusLost * :wa
 
 cmap w!! %!sudo tee > /dev/null %
+
+" fuck you i want my clipboard to be awesome
+set clipboard=unnamed
