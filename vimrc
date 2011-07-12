@@ -6,8 +6,8 @@ set vb
 if &t_Co >= 256 || has("gui_running")
   colorscheme mustang
   set number
-  set relativenumber
   set guifont=Droid\ Sans\ Mono\ Slashed:h12
+  set relativenumber
 else
   colorscheme desert
 endif
