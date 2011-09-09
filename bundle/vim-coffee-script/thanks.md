@@ -1,19 +1,32 @@
-Thanks to the following contributors:
+Thanks to these contributors:
 
-    Brian Egan (3):
-          Adding compile functionality to the ftplugin. Must be enabled in .vimrc
-          Updating the readme with compilation instructions
-          Updating bad header in readme to make instructions easier to read
+    Brian Egan:
+          Initial compiling support
 
-    Chris Hoffman (3):
+    Chris Hoffman:
           Add new keywoards from, to, and do
           Highlight the - in negative integers
           Add here regex highlighting, increase fold level for here docs
 
-    Karl Guertin (1):
+    David Wilhelm:
+          CoffeeRun command
+
+    Jay Adkisson:
+          Support for eco templates
+
+    Karl Guertin:
           Cakefiles are coffeescript
 
-    Simon Lipp (1):
+    Maciej Konieczny:
+          Fix funny typo
+
+    Nick Stenning:
+          Fold by indentation for coffeescript
+
+    Simon Lipp:
           Trailing spaces are not error on lines containing only spaces
+
+    Wei Dai:
+          Fix the use of Vim built-in make command.
 
 And thanks to anyone who files or has filed a bug report.
