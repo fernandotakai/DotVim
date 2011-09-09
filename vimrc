@@ -30,6 +30,11 @@ endif
 syntax on
 set hlsearch
 
+if $VIM_CRONTAB == "true"
+    set nobackup
+    set nowritebackup
+endif
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
@@ -38,8 +43,8 @@ if has("autocmd")
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
   filetype plugin indent on
-  set tabstop=2
-  set shiftwidth=2
+  set tabstop=4
+  set shiftwidth=4
   set expandtab
 
   " Put these in an autocmd group, so that we can delete them easily.
@@ -88,6 +93,7 @@ nnoremap # :set hlsearch<cr>#
 nnoremap / :set hlsearch<cr>/
 nnoremap ? :set hlsearch<cr>?
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
+let maplocalleader=','
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -204,9 +210,11 @@ map <silent> <c-]> :set noic<cr>g<c-]><silent>:set ic<cr>
 au BufNewFile,BufRead *.js set makeprg=gjslint\ %
 au BufNewFile,BufRead *.js set errorformat=%-P-----\ FILE\ \ :\ \ %f\ -----,Line\ %l\\,\ E:%n:\ %m,%-Q,%-GFound\ %s,%-GSome\ %s,%-Gfixjsstyle%s,%-Gscript\ can\ %s,%-G
 au BufRead,BufNewFile /usr/local/Cellar/nginx/0.7.65/conf/* set ft=nginx 
+au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
 au FocusLost * :wa
 
 cmap w!! %!sudo tee > /dev/null %
+map <Leader>E :Explore<cr>
 
 " fuck you i want my clipboard to be awesome
 set clipboard=unnamed
