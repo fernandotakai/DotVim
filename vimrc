@@ -78,6 +78,7 @@ if !exists(":DiffOrig")
 endif
 
 set guioptions-=T
+set cot-=preview
 set ruler
 set nohls
 
@@ -218,3 +219,9 @@ map <Leader>E :Explore<cr>
 
 " fuck you i want my clipboard to be awesome
 set clipboard=unnamed
+
+" java + eclim thingies
+map <Leader>ji :JavaImportMissing<cr>
+map <Leader>js :JavaSearchContext<cr>
+map <Leader>jm :JavaImpl<cr>
+map <Leader>jp :Project
