@@ -78,6 +78,7 @@ if !exists(":DiffOrig")
 endif
 
 set guioptions-=T
+set cot-=preview
 set ruler
 set nohls
 
@@ -129,6 +130,12 @@ noremap  <Up> <nop>
 noremap  <Down> <nop>
 noremap  <Left> <nop>
 noremap  <Right> <nop>
+
+" FUCKING MAN GO DIE IN HELL
+noremap K <nop>
+
+" ASSHOLE EX MODE NEEDS TO DIE TO. FUCKER.
+noremap gQ <nop>
 
 nnoremap <tab> :
 
@@ -210,7 +217,9 @@ map <silent> <c-]> :set noic<cr>g<c-]><silent>:set ic<cr>
 au BufNewFile,BufRead *.js set makeprg=gjslint\ %
 au BufNewFile,BufRead *.js set errorformat=%-P-----\ FILE\ \ :\ \ %f\ -----,Line\ %l\\,\ E:%n:\ %m,%-Q,%-GFound\ %s,%-GSome\ %s,%-Gfixjsstyle%s,%-Gscript\ can\ %s,%-G
 au BufRead,BufNewFile /usr/local/Cellar/nginx/0.7.65/conf/* set ft=nginx 
-au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+au BufNewFile,BufRead *pentadactylrc*,*.penta set filetype=pentadactyl
+au BufRead,BufNewFile Vagrantfile set filetype=ruby
+
 au FocusLost * :wa
 
 cmap w!! %!sudo tee > /dev/null %
@@ -218,3 +227,15 @@ map <Leader>E :Explore<cr>
 
 " fuck you i want my clipboard to be awesome
 set clipboard=unnamed
+
+" java + eclim thingies
+map <Leader>ji :JavaImportMissing<cr>
+map <Leader>js :JavaSearchContext<cr>
+map <Leader>jm :JavaImpl<cr>
+map <Leader>jp :Project
+
+" org mode thingies
+let g:org_agenda_files = ['~/org/work.org', '~/org/personal.org']
+let g:org_todo_keywords=['TODO', 'ONGOING', 'FEEDBACK', '|', 'DONE', 'DELEGATED', 'WONTFIX']
+
+let g:utl_cfg_hdl_scm_http_system = "silent !open -a firefox '%u'"
